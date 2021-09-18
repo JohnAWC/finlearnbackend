@@ -44,9 +44,8 @@ router.post("/user/add", (request, response) => {
   }
 
 database.connection.query(
-  `insert into user (name, profilename,email,age,wallet,verified,signupdate) 
-  values ('${request.body.name}',
-  '${request.body.profilename}','${request.body.email}','${request.body.age}','10','0',now())`,
+  `insert into user (name,email,age,wallet,signupdate) 
+  values ('${request.body.name}','${request.body.email}','${request.body.age}','10',now())`,
   (errors, results) => {
     if (errors) {
       console.log(errors);
