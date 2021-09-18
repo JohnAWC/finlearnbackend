@@ -7,7 +7,7 @@ let router = express.Router();
 router.get("/user/all", (request, response) => {
   // let users = data.get_all_users();
   // response.status(200).send(users);
-  database.connection.query("select * from users", (errors, results) => {
+  database.connection.query("select * from user", (errors, results) => {
     if (errors) {
       console.log(errors);
       response.status(500).send("Some internal error occurred");
@@ -25,7 +25,7 @@ router.get("/user/by-uid", (request, response) => {
   // let user = data.get_user_by_user_id(request.query.uid);
   // response.status(200).send(user);
   database.connection.query(
-    `select * from users where user_id = ${request.query.uid}`,
+    `select * from user where id = ${request.query.uid}`,
     (errors, results) => {
       if (errors) {
         console.log(errors);
@@ -44,9 +44,9 @@ router.post("/user/add", (request, response) => {
   }
 
 database.connection.query(
-  `insert into users (user_name, user_profilename,user_email,user_age,user_wallet,user_verified,user_signupdate) 
-  values ('${request.body.user_name}',
-  '${request.body.user_profilename}','${request.body.user_email}','${request.body.user_age}','10','0',now())`,
+  `insert into user (name, profilename,email,age,wallet,verified,signupdate) 
+  values ('${request.body.name}',
+  '${request.body.profilename}','${request.body.email}','${request.body.age}','10','0',now())`,
   (errors, results) => {
     if (errors) {
       console.log(errors);
